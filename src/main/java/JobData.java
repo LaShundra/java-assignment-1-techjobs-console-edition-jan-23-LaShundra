@@ -27,6 +27,11 @@ public class JobData {
      * @param field The column to retrieve values from
      * @return List of all of the values of the given field
      */
+
+
+
+
+
     public static ArrayList<String> findAll(String field) {
 
         // load data, if not already loaded
@@ -105,40 +110,32 @@ public class JobData {
     /**
      * Read in data from a CSV file and store it in a list
      */
-    private static void loadData() {
 
-        // Only load data once
+    private static void loadData() {
         if (isDataLoaded) {
             return;
         }
-
         try {
-
-            // Open the CSV file and set up pull out column header info and records
             Reader in = new FileReader(DATA_FILE);
+
             CSVParser parser = CSVFormat.RFC4180.withFirstRecordAsHeader().parse(in);
+
             List<CSVRecord> records = parser.getRecords();
             Integer numberOfColumns = records.get(0).size();
             String[] headers = parser.getHeaderMap().keySet().toArray(new String[numberOfColumns]);
 
             allJobs = new ArrayList<>();
-
-            // Put the records into a more friendly format
             for (CSVRecord record : records) {
                 HashMap<String, String> newJob = new HashMap<>();
-
                 for (String headerLabel : headers) {
                     newJob.put(headerLabel, record.get(headerLabel));
                 }
-
                 allJobs.add(newJob);
             }
-
-            // flag the data as loaded, so we don't do it twice
             isDataLoaded = true;
-
         } catch (IOException e) {
             System.out.println("Failed to load job data");
+
             e.printStackTrace();
         }
     }
