@@ -9,8 +9,6 @@ import java.util.Scanner;
 public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
-    private static String[] actionChoices = {"Browse", "Search"};
-    private static String[] columnChoice = {"Skill", "Employer", "Position Type"};
 
     public static void main (String[] args) {
 
@@ -79,7 +77,7 @@ public class TechJobs {
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
+        // Put the choices in an ordered structure, so we can
         // associate an integer with each one
         int i = 0;
         for (String choiceKey : choices.keySet()) {
@@ -125,13 +123,6 @@ public class TechJobs {
             String jobString = "\n*****" ;
 
             System.out.println(jobString);
-//
-//            + "\nEmployer: " + job.get("employer") +
-//                    "\nName: " + job.get("name") +
-//                    "\nLocation: " + job.get("location") +
-//                    "\nPosition Type: " + job.get("position type") +
-//                    "\nSkills: " + job.get("core competency") +
-//                    "\n*****";
 
 
 
@@ -142,6 +133,9 @@ public class TechJobs {
 
             System.out.println("*****");
 
+        }
+        if(someJobs.isEmpty()) {
+            System.out.print("No Results");
         }
 
     }
